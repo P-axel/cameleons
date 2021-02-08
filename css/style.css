@@ -1,0 +1,254 @@
+body {
+    background-color: #2f3848;
+    margin: auto;
+    max-width: 500px;
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+    color: white;
+}
+
+h2 {
+    color: #0099cc;
+}
+
+a {
+    color: yellowgreen;
+    
+    transition: color 2s;
+}
+
+a:hover {
+    color: #f05768;
+}
+
+/* header */
+h1 {
+    color: white;
+    font-style: italic;
+    font-size: 40px;
+    background-color: #f05768;
+    text-align: center;
+    font-weight: 800;
+    /* remplacer ce qui est dans normalize.css */
+    margin-top: 0;
+    border-radius: 0 0 10px 10px;
+    border-bottom: 3px solid lightgrey;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+}
+
+h1 .heart {
+    font-size: 1.5em;
+}
+
+header li {
+    list-style-type: none;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul {
+    display: flex;
+}
+
+#main-nav {
+    padding: 0;
+    font-size: 20px;
+}
+
+#main-nav li {
+    margin-right: 1em;
+    font-weight: bold;
+}
+
+#main-nav li a {
+    text-decoration: none;
+}
+
+#social-nav img {
+    height: 1.5em;
+    margin-left: 1em;
+}
+
+
+#presentation p {
+    /* on augmente l'interligne pour la lisibilité */
+    line-height: 1.5;
+}
+
+
+#highlight img {
+    max-width: 100%;
+}
+
+#highlight {
+    
+    position: relative;
+    margin-bottom: 1em;
+}
+
+#highlight h2 {
+    position: absolute;
+    background-color: #f05768;
+    color: white;
+    margin: 0;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+/* gallery */
+#gallery {
+    display: flex;
+    
+    padding-top: 50px;
+}
+
+#pictures {
+    max-width: 70%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 0;
+}
+
+#pictures img {
+    /* calcul pour la largeur : 25% de l'espace disponible, puis on enlève
+    5px pour espacer des autres images*/
+    width: calc(25% - 5px);
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* on cible une image qui est l'ainée de ses frères et soeurs */
+/* #pictures img:first-child {*/
+/* plus costaud pour notre cas : on cible la première image */    
+#pictures img:first-of-type {
+    float: left;
+    width: calc(50% - 5px);
+}
+
+/* cible la 15eme image */
+#pictures img:nth-of-type(15) {
+    border: 2px solid red;
+    /* avec le dimensionnement standard : la bordure s'ajoute à la taille 
+    indiquée pour l'élément, du coup ici notre image d'iguane est trop grande
+    => on peut changer le dimensionnement des boîtes pour que la bordure soit
+    comprise dans la taille qu'on donne à l'élément */
+    box-sizing: border-box;
+}
+
+#gallery aside {
+    max-width: 30%;
+    background-color: #004488;
+    padding: 12px;
+    align-self: flex-start;
+    margin-left: 1em;
+}
+
+#gallery h3 {
+    color: #00ccff;
+    border-bottom: 1px solid #00ccff;
+    padding: 10px 0;
+    line-height: 1.25;
+}
+
+#gallery aside p {
+    color: yellowgreen;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: #60b9ce;
+}
+
+/* animation pour faire battre le coeur : heartbeat = nom de l'animation */
+/* définition de l'animation */
+@keyframes heartbeat {
+    /* point de départ */
+    from {
+        opacity: 0; /* transparent */
+    }
+    /* arrivée */
+    to {
+        opacity: 1; /* opaque */
+    }
+}
+
+/* utilisation de l'animation sur un élément */
+.heart {
+    /* enlever le commentaire pour avoir l'animation */
+    /* animation-name: heartbeat; */
+    animation-duration: 1s;
+    /* animation-iteration-count: 5; */
+    animation-iteration-count: infinite;
+    animation-direction: alternate; /* de 0 à 1 puis de 1 à 0 */
+}
+
+/* animation pour faire tourner les couleurs */
+@keyframes couleurs-magiques {
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+    from {
+        filter: hue-rotate(0);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+img {
+    /* enlever le commentaire pour avoir l'animation */
+    /* animation-name: couleurs-magiques; */
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out; /* accélération par moments */
+}
+
+/*body {
+    animation-name: couleurs-magiques;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}*/
+
+/* on applique une transformation pour que toutes les images soient à l'envers */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/transform */
+img {
+    /* transform: rotate(0.5turn); */
+}
+
+/* media queries : définir des breakpoints, pour changer l'affichage */
+@media (max-width: 600px) {
+    /* si la largeur est inférieure à 600 pixels, alors ce code CSS s'applique */
+    #gallery {
+        flex-direction: column;
+        background-color: plum;
+    }
+
+    #pictures,  #gallery aside {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 432px) {
+    /* si la largeur est inférieure à 432 pixels, alors ce code CSS s'applique */
+    #pictures {
+        background-color: white;
+    }
+}
